@@ -58,7 +58,7 @@ const deleteCard = (req, res, next) => {
 };
 
 // Поставить лайк на card
-const addLikeCard = (req, res, next) => {
+function addLikeCard(req, res, next) {
   const { cardId } = req.params;
   const owner = req.user._id; // _id станет доступен
   Card.findByIdAndUpdate(cardId, { $addToSet: { likes: owner } }, { new: true })
@@ -73,10 +73,10 @@ const addLikeCard = (req, res, next) => {
         next(new BadRequestError('При попытке поставить лайк карточке переданы некорректные данные'));
       } else { next(err); }
     });
-};
+}
 
 // убрать лайк с card
-const deleteLikeCard = (req, res, next) => {
+function deleteLikeCard(req, res, next) {
   const { cardId } = req.params;
   const owner = req.user._id; // _id станет доступен
   Card.findByIdAndUpdate(cardId, { $pull: { likes: owner } }, { new: true })
@@ -91,7 +91,7 @@ const deleteLikeCard = (req, res, next) => {
         next(new BadRequestError('При попытке убрать лайк карточки переданы некорректные данные'));
       } else { next(err); }
     });
-};
+}
 
 module.exports = {
   getCards,

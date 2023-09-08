@@ -10,6 +10,7 @@ require('dotenv').config();
 const { rateLimit } = require('express-rate-limit');
 const cors = require('cors');
 const routes = require('./routes/router');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 
@@ -42,9 +43,11 @@ app.use(cookieParser()); // подключаем парсер кук как ми
 
 // app.use(express.static(path.join(__dirname, "public")));
 
+app.use(requestLogger); // подключаем логгер запросов
 // Подключение маршрутов приложения
 app.use(routes); // запускаем роутинг
 
+app.use(errorLogger); // подключаем логгер ошибок
 // обработчики ошибок
 app.use(errors()); // обработчик ошибок celebrate
 
