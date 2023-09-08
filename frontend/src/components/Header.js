@@ -1,18 +1,25 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LoggedInContext } from '../contexts/LoggedInContext';
+import * as auth from '../utils/auth';
 import logo from '../images/logo.svg';
 
-function Header({ emailUser, handleLogin }) {
+function Header({ emailUser, handleLogin, handleEmailClean }) {
   const isLoggedIn = React.useContext(LoggedInContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   function signOut() {
-    // localStorage.removeItem('jwt');
-    handleLogin(false);
-    navigate('/sign-in');
+    auth
+      .logout()
+      .then(() => {
+        handleLogin(false);
+        navigate('/sign-in', {replace: true})
+        handleEmailClean(null);
+      })
+      .catch(err => console.log(`Ошибка выхода: ${err}`));
   }
+
   return (
     <header className="header section">
       <a className="link" href="#">
@@ -21,7 +28,7 @@ function Header({ emailUser, handleLogin }) {
       {isLoggedIn ? (
         <nav className="header__nav">
           <p className="header__text text text_theme_black">{emailUser}</p>
-          <Link to="/sign-in" className="link header__link text link_color_grey" onClick={signOut}>
+          <Link to="/sign-out" className="link header__link text link_color_grey" onClick={signOut}>
             Выйти
           </Link>
         </nav>

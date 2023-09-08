@@ -76,6 +76,7 @@ function App() {
       .checkToken()
       .then(res => {
         setEmailUser(res.email);
+        console.log(res);
         setIsLoggedIn(true);
         navigate(location.pathname);
       })
@@ -194,6 +195,10 @@ function App() {
     setIsLoading(boolean);
   }
 
+  function handleEmailClean(e) {
+    setEmailUser(e);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
@@ -206,7 +211,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <LoadingContext.Provider value={isLoading}>
           <div className="App">
-            <Header emailUser={emailUser} handleLogin={handleLogin} />
+            <Header emailUser={emailUser} handleLogin={handleLogin} handleEmailClean={handleEmailClean}/>
             <Routes>
               <Route
                 path="*"
