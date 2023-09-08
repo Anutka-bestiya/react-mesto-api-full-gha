@@ -68,7 +68,7 @@ function App() {
       .catch(err => {
         console.log(`Ошибка получения массива Cards: ${err}`);
       });
-  }, []);
+  }, [isLoggedIn]);
 
   const tokenCheck = () => {
     auth
