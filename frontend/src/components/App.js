@@ -76,7 +76,7 @@ function App() {
       .checkToken()
       .then(res => {
         setEmailUser(res.email);
-        console.log(res);
+        // console.log(res);
         setIsLoggedIn(true);
         navigate(location.pathname);
       })
