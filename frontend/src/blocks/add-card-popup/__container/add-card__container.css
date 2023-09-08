@@ -1,0 +1,8 @@
+.add-card__container {
+  margin-top: 186px;
+}
+@media (max-width: 879px) {
+  .add-card__container {
+    margin-top: 123px;
+  }
+}

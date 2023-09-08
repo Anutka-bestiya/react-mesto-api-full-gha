@@ -1,0 +1,12 @@
+.element__caption {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 18px 20px 31px 21px;
+  align-items: center;
+}
+@media (max-width: 879px) {
+  .element__caption {
+    margin-top: 23px;
+  }
+}

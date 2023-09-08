@@ -1,0 +1,23 @@
+.profile {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: 150px minmax(min-content, 300px) minmax(48px, 1fr) 150px;
+  grid-template-areas:
+    'profile__image profile__name profile__edit-button button-add'
+    'profile__image profile__about profile__about button-add';
+}
+
+@media (max-width: 879px) {
+  .profile {
+    grid-template-columns: minmax(min-content, auto) auto;
+    grid-template-areas:
+      'profile__image profile__image'
+      'profile__name profile__edit-button'
+      'profile__about profile__about'
+      'button-add button-add';
+    justify-items: center;
+    margin-top: 42px;
+    margin-bottom: 36px;
+  }
+}

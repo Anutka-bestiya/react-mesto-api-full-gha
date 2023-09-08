@@ -1,0 +1,19 @@
+.button {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  width: 358px;
+  border-radius: 2px;
+  color: #fff;
+}
+.button:hover {
+  opacity: 0.6;
+}
+@media (max-width: 879px) {
+  .button {
+    width: 238px;
+  }
+}

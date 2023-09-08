@@ -1,0 +1,14 @@
+.popup__button {
+  margin-top: 20px;
+  background-color: #000;
+}
+.popup__button:hover {
+  opacity: 0.8;
+}
+.popup__button:disabled {
+  background-color: rgba(0, 0, 0, 0);
+  color: black;
+  border: 1px solid #000;
+  opacity: 0.2;
+  cursor: default;
+}

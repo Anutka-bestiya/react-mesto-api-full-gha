@@ -1,0 +1,6 @@
+.profile__avatar {
+  margin: 0;
+  padding: 0;
+  grid-area: profile__image;
+  position: relative;
+}

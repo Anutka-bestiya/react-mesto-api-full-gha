@@ -1,0 +1,13 @@
+.profile__about {
+  margin-top: -12px;
+  color: #fff;
+  grid-area: profile__about;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media (max-width: 879px) {
+  .profile__about {
+    margin-top: 7px;
+  }
+}

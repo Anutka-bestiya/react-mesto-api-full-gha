@@ -1,0 +1,7 @@
+.element__title {
+  display: block;
+  max-width: calc(100% - 40px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

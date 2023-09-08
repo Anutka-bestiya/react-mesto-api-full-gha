@@ -1,0 +1,11 @@
+.section {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 880px;
+  width: calc(100% - 2 * 19px);
+}
+@media (max-width: 879px) {
+  .section {
+    margin: 0 19px;
+  }
+}

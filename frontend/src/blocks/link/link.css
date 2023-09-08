@@ -1,0 +1,9 @@
+.link {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+.link:hover {
+  opacity: 0.8;
+}
