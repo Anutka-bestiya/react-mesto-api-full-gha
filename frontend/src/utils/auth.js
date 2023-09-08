@@ -45,7 +45,6 @@ export const checkToken = () => {
       return checkRes(res);
     })
     .then(data => {
-      console.log(data);
       return data;
     });
 };

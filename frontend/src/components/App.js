@@ -34,7 +34,6 @@ function App() {
     about: 'О себе',
     avatar: avatar
   });
-  const [emailUser, setEmailUser] = React.useState({});
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(null);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
@@ -53,7 +52,7 @@ function App() {
       .catch(err => {
         console.log(`Ошибка получения currentUser: ${err}`);
       });
-  }, []);
+  }, [isLoggedIn]);
 
   const handleLogin = boolean => {
     setIsLoggedIn(boolean);
@@ -75,8 +74,7 @@ function App() {
     auth
       .checkToken()
       .then(res => {
-        setEmailUser(res.email);
-        // console.log(res);
+        setCurrentUser(res)
         setIsLoggedIn(true);
         navigate(location.pathname);
       })
@@ -95,6 +93,10 @@ function App() {
   // if (isLoggedIn === null) {
   //   return <Loading />;
   // }
+
+  function handleSetData(data) {
+    setCurrentUser({data: data});
+  }
 
   function handleCardClick(name, link) {
     isSelectedCard({ name, link });
@@ -195,10 +197,6 @@ function App() {
     setIsLoading(boolean);
   }
 
-  function handleEmailClean(e) {
-    setEmailUser(e);
-  }
-
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
@@ -211,7 +209,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <LoadingContext.Provider value={isLoading}>
           <div className="App">
-            <Header emailUser={emailUser} handleLogin={handleLogin} handleEmailClean={handleEmailClean}/>
+            <Header handleLogin={handleLogin}/>
             <Routes>
               <Route
                 path="*"

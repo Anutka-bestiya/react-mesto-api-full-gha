@@ -159,12 +159,12 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
-function logout(req, res, next) {
+const logout = (req, res, next) => {
   res
     .clearCookie('jwt')
     .send({ message: 'Выход выполнен успешно!' })
     .catch(next);
-}
+};
 
 module.exports = {
   getUsers,
