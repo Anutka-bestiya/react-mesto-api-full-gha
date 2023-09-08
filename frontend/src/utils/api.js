@@ -1,6 +1,5 @@
-class Api /*extends React.Component*/ {
+class Api {
   constructor({ baseUrl, headers }) {
-    // super(props);
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
@@ -15,7 +14,6 @@ class Api /*extends React.Component*/ {
   //запрос и изменение данных о пользователе
   getUserInfoServe() {
     return fetch(`${this._baseUrl}/users/me`, {
-      // headers: { authorization: this._headers.authorization },
       credentials: 'include', // теперь куки посылаются вместе с запросом
     }).then(res => this._checkRes(res));
   }
@@ -41,7 +39,6 @@ class Api /*extends React.Component*/ {
   //запрос карточек
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {
-      // headers: { authorization: this._headers.authorization },
       credentials: 'include', // теперь куки посылаются вместе с запросом
     }).then(res => this._checkRes(res));
   }
@@ -78,7 +75,6 @@ class Api /*extends React.Component*/ {
 const api = new Api({
   baseUrl: 'http://localhost:4000',
   headers: {
-    // authorization: '8629910e-8349-4959-825d-5e9f5cf99f3f',
     'Content-Type': 'application/json'
   }
 });
