@@ -9,7 +9,7 @@ const NotFoundError = require('../errors/not-found-err');
 
 router.use('/sign-up', routerReg);
 router.use('/sign-in', routerAuth);
-router.use('/sign-out', routerLogout);
+router.use('/sign-out', auth, routerLogout);
 router.use('/users', auth, routerUsers);
 router.use('/cards', auth, routerCards);
 router.use('/*', (req, res, next) => {
