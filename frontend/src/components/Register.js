@@ -27,11 +27,11 @@ function Register(props) {
 
     const formErrorSpan = document.querySelector('.form__spanerror');
 
-    if (formValue.password !== formValue.confirmPassword) {
-      setErrorMessage('Пароли не совпадают!');
-      formErrorSpan.classList.add('popup__error_visible');
-      return;
-    }
+    // if (formValue.password !== formValue.confirmPassword) {
+    //   setErrorMessage('Пароли не совпадают!');
+    //   formErrorSpan.classList.add('popup__error_visible');
+    //   return;
+    // }
     {
       props.handleSetIsLoading(true);
       const { email, password } = formValue;
