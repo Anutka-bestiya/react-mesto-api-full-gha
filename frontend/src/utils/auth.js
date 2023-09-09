@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mesto-anchikfyz.nomoredomainsicu.ru';
+export const BASE_URL = 'https://api.mesto-anchikfyz.nomoredomainsicu.ru';
 
 function checkRes(res) {
   return res.ok ? res.json() : Promise.reject(res.status);

@@ -71,7 +71,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto-anchikfyz.nomoredomainsicu.ru',
+  baseUrl: 'https://api.mesto-anchikfyz.nomoredomainsicu.ru',
   headers: {
     'Content-Type': 'application/json'
   }
