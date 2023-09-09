@@ -81,7 +81,7 @@ function App() {
       .catch(err => {
         console.log(`Ошибка ${err}`);
         setIsLoggedIn(false);
-        navigate('/sign-in', { replace: true });
+        navigate('/signin', { replace: true });
       });
   };
 
