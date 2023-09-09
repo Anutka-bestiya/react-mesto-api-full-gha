@@ -88,7 +88,7 @@ function Register(props) {
           onChange={handleChange}
           placeholder="password"
         />
-        <input
+        {/* <input
           className="register__input form__input form__input_theme_black text text_size_small text_theme_black form-register-confirmPassword"
           required
           id="confirmPassword"
@@ -97,7 +97,7 @@ function Register(props) {
           value={formValue.confirmPassword}
           onChange={handleChange}
           placeholder="confirmPassword"
-        />
+        /> */}
       </AuthForm>
       <p className="register__text text text_size_small text_theme_black">
         Уже зарегистрированы?{' '}
