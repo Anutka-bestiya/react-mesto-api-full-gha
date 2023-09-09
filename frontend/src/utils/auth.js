@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mesto-anchikfyz.nomoredomainsicu.ru';
+export const BASE_URL = 'http://localhost:3000';
 
 function checkRes(res) {
   return res.ok ? res.json() : Promise.reject(res.status);
