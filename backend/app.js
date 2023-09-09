@@ -31,7 +31,7 @@ const allowedCors = [
 ];
 
 app.use(cors(
-  { origin: allowedCors, credentials: true, allowedHeaders: ['Content-Type', 'Authorization'] },
+  { origin: allowedCors, credentials: true, allowedHeaders: ['Access-Control-Request-Headers'] },
 ));
 
 app.use(helmet());
