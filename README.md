@@ -11,6 +11,6 @@
 
 IP 158.160.61.247
 
-Frontend https://api.mesto-anchikfyz.nomoredomainsicu.ru
+Frontend https://mesto-anchikfyz.nomoredomainsicu.ru
 
-Backend https://mesto-anchikfyz.nomoredomainsicu.ru
+Backend https://api.mesto-anchikfyz.nomoredomainsicu.ru
