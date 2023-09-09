@@ -94,10 +94,6 @@ function App() {
   //   return <Loading />;
   // }
 
-  function handleSetData(data) {
-    setCurrentUser({data: data});
-  }
-
   function handleCardClick(name, link) {
     isSelectedCard({ name, link });
   }
