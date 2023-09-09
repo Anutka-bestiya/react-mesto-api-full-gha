@@ -5,10 +5,10 @@ function checkRes(res) {
 };
 
 export const register = (email, password) => {
-  return fetch(BASE_URL + '/signup', {
+  return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
+      // Accept: 'application/json',
       'Content-Type': 'application/json'
     },
     credentials: 'include', // теперь куки посылаются вместе с запросом
@@ -19,10 +19,10 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(BASE_URL + '/signin', {
+  return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
+      // Accept: 'application/json',
       'Content-Type': 'application/json'
     },
     credentials: 'include', // теперь куки посылаются вместе с запросом
