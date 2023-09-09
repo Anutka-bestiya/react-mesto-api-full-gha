@@ -12,6 +12,11 @@ router.use('/signin', routerAuth);
 router.use('/users', auth, routerUsers);
 router.use('/cards', auth, routerCards);
 router.use('/signout', auth, routerLogout);
+router.use('/crash-test', (req, res, next) => {
+  setTimeout(() => {
+    next(new Error('Сервер сейчас упадет'));
+  }, 0);
+});
 router.use('/*', (req, res, next) => {
   next(new NotFoundError('Страница не найдена.'));
 });

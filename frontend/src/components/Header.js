@@ -24,7 +24,7 @@ function Header({ handleLogin }) {
 
   return (
     <header className="header section">
-      <a className="link" href="#">
+      <a className="link" href="/">
         <img src={logo} alt="Логотип: Место.Россия" className="logo header__logo" />
       </a>
       {isLoggedIn ? (
