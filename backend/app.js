@@ -13,8 +13,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 
-const { NODE_ENV, JWT_SECRET } = process.env;
-console.log(JWT_SECRET);
 const app = express();
 
 const limiter = rateLimit({
