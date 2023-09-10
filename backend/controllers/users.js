@@ -66,7 +66,7 @@ const getUserProfile = (req, res, next) => {
   User.findById(id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Не найден пользователь с таким id');
+        return next(new NotFoundError('Не найден пользователь с таким id'));
       }
       return res.status(OK_STATUS_CODE).send(user);
     })
@@ -80,7 +80,7 @@ const getByIdProfile = (req, res, next) => {
   User.findById(id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Не найден пользователь с таким id');
+        return next(new NotFoundError('Не найден пользователь с таким id'));
       }
       return res.status(OK_STATUS_CODE).send(user);
     })
@@ -100,9 +100,9 @@ const updateProfile = (req, res, next) => {
   User.findByIdAndUpdate(owner, { name, about }, { new: true, runValidators: true })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Не найден пользователь с таким id');
+        return next(new NotFoundError('Не найден пользователь с таким id'));
       }
-      res.status(OK_STATUS_CODE).send(user);
+      return res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -120,9 +120,9 @@ const updateAvatar = (req, res, next) => {
   User.findByIdAndUpdate(owner, { avatar }, { new: true, runValidators: true })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Не найден пользователь с таким id');
+        return next(new NotFoundError('Не найден пользователь с таким id'));
       }
-      res.status(OK_STATUS_CODE).send(user);
+      return res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
