@@ -64,9 +64,9 @@ function addLikeCard(req, res, next) {
   Card.findByIdAndUpdate(cardId, { $addToSet: { likes: owner } }, { new: true })
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Не найдена карточка с таким id');
+        return next(new NotFoundError('Не найдена карточка с таким id'));
       }
-      res.status(OK_STATUS_CODE).send(card);
+      return res.status(OK_STATUS_CODE).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -82,9 +82,9 @@ function deleteLikeCard(req, res, next) {
   Card.findByIdAndUpdate(cardId, { $pull: { likes: owner } }, { new: true })
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Не найдена карточка с таким id');
+        return next(new NotFoundError('Не найдена карточка с таким id'));
       }
-      res.status(OK_STATUS_CODE).send(card);
+      return res.status(OK_STATUS_CODE).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

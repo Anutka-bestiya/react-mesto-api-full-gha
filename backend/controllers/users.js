@@ -18,7 +18,9 @@ const ConflictError = require('../errors/conflict-err');
 // Получение пользователей
 const getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.status(OK_STATUS_CODE).send(users))
+    .then((users) => {
+      res.status(OK_STATUS_CODE).send(users);
+    })
     .catch(next);
 };
 
@@ -149,7 +151,7 @@ const login = (req, res, next) => {
       // const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
       // вернём токен
       // res.send({ token })
-      res
+      return res
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
