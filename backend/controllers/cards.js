@@ -22,7 +22,7 @@ const createCard = (req, res, next) => {
   Card.create({ name, link, owner })
     .then((card) => res.status(HTTP_CREATED_STATUS_CODE).send(card))
     .catch((err) => {
-      if (err instanceof 'ValidationError') {
+      if (err.name === 'ValidationError') {
         next(new BadRequestError('При создании карточки переданы некорректные данные'));
       } else { next(err); }
     });
@@ -51,7 +51,7 @@ const deleteCard = (req, res, next) => {
         .catch(next);
     })
     .catch((err) => {
-      if (err instanceof 'CastError') {
+      if (err.name === 'CastError') {
         next(new BadRequestError('При попытке удаления карточки переданы некорректные данные'));
       } else { next(err); }
     });
@@ -69,7 +69,7 @@ function addLikeCard(req, res, next) {
       res.status(OK_STATUS_CODE).send(card);
     })
     .catch((err) => {
-      if (err instanceof 'CastError') {
+      if (err.name === 'CastError') {
         next(new BadRequestError('При попытке поставить лайк карточке переданы некорректные данные'));
       } else { next(err); }
     });
@@ -87,7 +87,7 @@ function deleteLikeCard(req, res, next) {
       res.status(OK_STATUS_CODE).send(card);
     })
     .catch((err) => {
-      if (err instanceof 'CastError') {
+      if (err.name === 'CastError') {
         next(new BadRequestError('При попытке убрать лайк карточки переданы некорректные данные'));
       } else { next(err); }
     });
