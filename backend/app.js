@@ -9,7 +9,7 @@ require('dotenv').config();
 const { rateLimit } = require('express-rate-limit');
 const cors = require('cors');
 const routes = require('./routes/router');
-// const centralizedErrorHandler = require('./middlewares/centralized-error-handler');
+const centralizedErrorHandler = require('./middlewares/centralized-error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
@@ -55,24 +55,24 @@ app.use(errorLogger); // подключаем логгер ошибок
 // обработчики ошибок
 app.use(errors()); // обработчик ошибок celebrate
 // наш централизованный обработчик
-// app.use(centralizedErrorHandler);
+app.use(centralizedErrorHandler);
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  // если у ошибки нет статуса, выставляем 500
-  console.log(err);
-  let { statusCode } = err;
-  console.log(statusCode);
-  const { message } = err;
-  console.log(message);
-  if (!statusCode) { statusCode = 500; }
-  console.log(statusCode);
-  console.log(res);
-  res
-    .status(statusCode)
-    .send(
-      { message: statusCode !== 500 ? message : 'Произошла ошибка на сервере' },
-    );
-});
+// app.use((err, req, res, next) => {
+//   // если у ошибки нет статуса, выставляем 500
+//   console.log(err);
+//   let { statusCode } = err;
+//   console.log(statusCode);
+//   const { message } = err;
+//   console.log(message);
+//   if (!statusCode) { statusCode = 500; }
+//   console.log(statusCode);
+//   console.log(res);
+//   res
+//     .status(statusCode)
+//     .send(
+//       { message: statusCode !== 500 ? message : 'Произошла ошибка на сервере' },
+//     );
+// });
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/mestodb')

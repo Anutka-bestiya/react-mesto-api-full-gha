@@ -50,7 +50,7 @@ function createUser(req, res, next) {
         .catch((err) => {
           if (err.code === 11000) {
             next(new ConflictError('Пользователь с таким email существует'));
-          } else if (err instanceof 'ValidationError') {
+          } else if (err.name === 'ValidationError') {
             next(new BadRequestError('При создании пользователя переданы некорректные данные'));
           } else { next(err); }
         });
@@ -60,10 +60,13 @@ function createUser(req, res, next) {
 // Получение персональных данныех пользователя
 const getUserProfile = (req, res, next) => {
   const id = req.user._id; // _id станет доступен
-  User.findById(id, { runValidators: true })
+
+  User.findById(id)
     .then((user) => {
-      if (user) { return res.status(OK_STATUS_CODE).send(user); }
-      throw new NotFoundError('Не найден пользователь с таким id');
+      if (!user) {
+        throw new NotFoundError('Не найден пользователь с таким id');
+      }
+      return res.status(OK_STATUS_CODE).send(user);
     })
     .catch(next);
 };
@@ -71,7 +74,7 @@ const getUserProfile = (req, res, next) => {
 // Получение данныех пользователя по id
 const getByIdProfile = (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
+
   User.findById(id)
     .then((user) => {
       if (!user) {
@@ -80,7 +83,7 @@ const getByIdProfile = (req, res, next) => {
       return res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
-      if (err instanceof 'CastError') {
+      if (err.name === 'CastError') {
         next(new BadRequestError('При получении данных пользователя были переданы некорректные данные'));
       } else {
         next(err);
@@ -100,7 +103,7 @@ const updateProfile = (req, res, next) => {
       res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
-      if (err instanceof 'ValidationError') {
+      if (err.name === 'ValidationError') {
         next(new BadRequestError('При обновлении данных профиля переданы некорректные данные'));
       } else {
         next(err);
@@ -120,7 +123,7 @@ const updateAvatar = (req, res, next) => {
       res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
-      if (err instanceof 'ValidationError') {
+      if (err.name === 'ValidationError') {
         next(new BadRequestError('При обновлении аватара переданы некорректные данные'));
       } else {
         next(err);
