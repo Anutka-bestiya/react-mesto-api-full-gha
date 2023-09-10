@@ -33,7 +33,6 @@ app.use(cors(
   {
     origin: allowedCors,
     credentials: true,
-    // allowedHeaders: ['Access-Control-Request-Headers'],
   },
 ));
 

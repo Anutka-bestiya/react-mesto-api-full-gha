@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken'); // импортируем модуль json
 require('dotenv').config();
 
 const { NODE_ENV, JWT_SECRET } = process.env;
-console.log(JWT_SECRET);
-console.log(process.env.NODE_ENV);
 const User = require('../models/user'); // данные
 const {
   OK_STATUS_CODE,
@@ -146,8 +144,6 @@ const login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-      console.log(JWT_SECRET);
-      console.log(token);
       // const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
       // вернём токен
       // res.send({ token })
