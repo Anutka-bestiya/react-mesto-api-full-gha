@@ -53,7 +53,7 @@ function createUser(req, res, next) {
         .catch((err) => {
           if (err.code === 11000) {
             next(new ConflictError('Пользователь с таким email существует'));
-          } else if (err.name === 'ValidationError') {
+          } else if (err instanceof mongoose.Error.ValidationError) {
             next(new BadRequestError('При создании пользователя переданы некорректные данные'));
           } else { next(err); }
         });
@@ -106,7 +106,7 @@ const updateProfile = (req, res, next) => {
       return res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError('При обновлении данных профиля переданы некорректные данные'));
       } else {
         next(err);
@@ -126,7 +126,7 @@ const updateAvatar = (req, res, next) => {
       return res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError('При обновлении аватара переданы некорректные данные'));
       } else {
         next(err);
