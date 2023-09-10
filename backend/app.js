@@ -42,7 +42,7 @@ app.use(helmet());
 // подключаем rate-limiter
 app.use(limiter);
 app.use(express.json()); // для собирания JSON-формата
-app.use(express.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
+// app.use(express.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 app.use(cookieParser()); // подключаем парсер кук как мидлвэр
 
 // app.use(express.static(path.join(__dirname, "public")));

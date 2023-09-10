@@ -60,7 +60,7 @@ function createUser(req, res, next) {
 // Получение персональных данныех пользователя
 const getUserProfile = (req, res, next) => {
   const id = req.user._id; // _id станет доступен
-  User.findById(id)
+  User.findById(id, { runValidators: true })
     .then((user) => {
       if (user) { return res.status(OK_STATUS_CODE).send(user); }
       throw new NotFoundError('Не найден пользователь с таким id');
@@ -71,6 +71,7 @@ const getUserProfile = (req, res, next) => {
 // Получение данныех пользователя по id
 const getByIdProfile = (req, res, next) => {
   const { id } = req.params;
+  console.log(id);
   User.findById(id)
     .then((user) => {
       if (!user) {
