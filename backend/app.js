@@ -13,6 +13,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+console.log(JWT_SECRET);
 const app = express();
 
 const limiter = rateLimit({
@@ -37,8 +39,7 @@ app.use(cors(
 ));
 
 app.use(helmet());
-// подключаем rate-limiter
-app.use(limiter);
+app.use(limiter); // подключаем rate-limiter
 app.use(express.json()); // для собирания JSON-формата
 app.use(cookieParser()); // подключаем парсер кук как мидлвэр
 

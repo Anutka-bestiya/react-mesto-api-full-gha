@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     try {
       return jwt.verify(anyToken, 'dev-secret');
     } catch (err) {
-      throw new UnauthorizedError('Токен не прошел верификацию. Необходима авторизация');
+      return next(new UnauthorizedError('Токен не прошел верификацию. Необходима авторизация'));
     }
   }
 
