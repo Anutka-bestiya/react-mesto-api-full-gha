@@ -117,6 +117,7 @@ function App() {
       .deleteCard(card._id)
       .then(
         setCards(
+          // eslint-disable-next-line
           cards.filter(c => {
             if (c._id !== card._id) {
               return c;

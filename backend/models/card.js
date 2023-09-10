@@ -5,10 +5,8 @@ const cardSchema = new mongoose.Schema({
   name: {
     type: String, // строка
     required: true, // обязательное поле
-    validate: {
-      validator: ({ length }) => length >= 2 && length <= 30,
-      message: 'Имя карточки должно быть длиной от 2 до 30 символов',
-    },
+    minlength: [2, 'Имя должно быть длиной от 2 символов'],
+    maxlength: [30, 'Имя должно быть длиной до 30 символов'],
   },
   link: {
     required: true,

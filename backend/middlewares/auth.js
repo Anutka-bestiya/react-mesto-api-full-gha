@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
   function checkToken(anyToken) {
     if (!anyToken) {
-      throw new UnauthorizedError('Токен не получен из куки. Необходима авторизация');
+      return next(new UnauthorizedError('Токен не получен из куки. Необходима авторизация'));
     }
 
     try {
@@ -17,9 +17,6 @@ module.exports = (req, res, next) => {
     }
   }
   const payload = checkToken(token);
-  if (!payload) {
-    throw new UnauthorizedError('Необходима авторизация');
-  }
 
   req.user = payload; // записываем пейлоуд в объект запроса
   next(); // пропускаем запрос дальше

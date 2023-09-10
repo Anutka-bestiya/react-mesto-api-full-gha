@@ -6,18 +6,14 @@ const { LINK_REGEX } = require('../utils/regex');
 const userSchema = new mongoose.Schema({
   name: {
     type: String, // строка
-    validate: {
-      validator: ({ length }) => length >= 2 && length <= 30,
-      message: 'Имя пользователя должно быть длиной от 2 до 30 символов',
-    },
+    minlength: [2, 'Имя пользователя должно быть длиной от 2 символов'],
+    maxlength: [30, 'Имя пользователя должно быть длиной до 30 символов'],
     default: 'Жак-Ив Кусто',
   },
   about: {
     type: String, // строка
-    validate: {
-      validator: ({ length }) => length >= 2 && length <= 30,
-      message: 'О себе должно быть длиной от 2 до 30 символов',
-    },
+    minlength: [2, 'О себе должно быть длиной от 2 символов'],
+    maxlength: [30, 'о себе должно быть длиной до 30 символов'],
     default: 'Исследователь',
   },
   avatar: {

@@ -48,13 +48,13 @@ const deleteCard = (req, res, next) => {
         .then((cardDel) => {
           res.status(OK_STATUS_CODE).send(cardDel);
         })
-        .catch((err) => {
-          if (err.name === 'CastError') {
-            next(new BadRequestError('При попытке удаления карточки переданы некорректные данные'));
-          } else { next(err); }
-        });
+        .catch(next);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        next(new BadRequestError('При попытке удаления карточки переданы некорректные данные'));
+      } else { next(err); }
+    });
 };
 
 // Поставить лайк на card
