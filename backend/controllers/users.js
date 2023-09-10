@@ -1,6 +1,7 @@
 // const path = require("path");
 const bcrypt = require('bcryptjs'); // импортируем bcrypt
 const jwt = require('jsonwebtoken'); // импортируем модуль jsonwebtoken
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const { NODE_ENV, JWT_SECRET } = process.env;
@@ -85,7 +86,7 @@ const getByIdProfile = (req, res, next) => {
       return res.status(OK_STATUS_CODE).send(user);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err instanceof mongoose.Error.CastError) {
         next(new BadRequestError('При получении данных пользователя были переданы некорректные данные'));
       } else {
         next(err);
