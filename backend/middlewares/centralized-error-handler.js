@@ -1,5 +1,5 @@
 // eslint-disable-next-line consistent-return
-const centralizedErrorHandler = (err, req, res, next) => {
+const centralizedErrorHandler = (err, req, res) => {
   // если у ошибки нет статуса, выставляем 500
   let { statusCode } = err;
   const { message } = err;
