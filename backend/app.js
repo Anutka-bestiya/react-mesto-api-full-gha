@@ -2,7 +2,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-// const path = require("path");
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 require('dotenv').config();
@@ -34,7 +33,6 @@ app.use(cors(
   {
     origin: allowedCors,
     credentials: true,
-    // allowedHeaders: ['Access-Control-Request-Headers']
   },
 ));
 
@@ -42,7 +40,6 @@ app.use(helmet());
 // подключаем rate-limiter
 app.use(limiter);
 app.use(express.json()); // для собирания JSON-формата
-// app.use(express.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 app.use(cookieParser()); // подключаем парсер кук как мидлвэр
 
 // app.use(express.static(path.join(__dirname, "public")));
@@ -56,23 +53,6 @@ app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors()); // обработчик ошибок celebrate
 // наш централизованный обработчик
 app.use(centralizedErrorHandler);
-// eslint-disable-next-line no-unused-vars
-// app.use((err, req, res, next) => {
-//   // если у ошибки нет статуса, выставляем 500
-//   console.log(err);
-//   let { statusCode } = err;
-//   console.log(statusCode);
-//   const { message } = err;
-//   console.log(message);
-//   if (!statusCode) { statusCode = 500; }
-//   console.log(statusCode);
-//   console.log(res);
-//   res
-//     .status(statusCode)
-//     .send(
-//       { message: statusCode !== 500 ? message : 'Произошла ошибка на сервере' },
-//     );
-// });
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/mestodb')
